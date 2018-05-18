@@ -177,7 +177,7 @@ class PyPWL:
         if pwl is not None:
             self.pwl = os.path.abspath(pwl)
             self.tag = self.pwl
-            pwlF = file(pwl)
+            pwlF = open(pwl)
             for ln in pwlF:
                 word = ln.strip()
                 self.add_to_session(word)
@@ -219,7 +219,7 @@ class PyPWL:
         For a PWL, this means appending it to the file.
         """
         if self.pwl is not None:
-            pwlF = file(self.pwl,"a")
+            pwlF = open(self.pwl,"a")
             pwlF.write("%s\n" % (word.strip(),))
             pwlF.close()
         self.add_to_session(word)
@@ -238,7 +238,7 @@ class PyPWL:
         # Just remove it from the list.
         self._words.remove(word)
         if self.pwl is not None:
-            pwlF = file(self.pwl,"wt")
+            pwlF = open(self.pwl,"wt")
             for w in self._words:
                 pwlF.write("%s\n" % (w.strip(),))
             pwlF.close()
